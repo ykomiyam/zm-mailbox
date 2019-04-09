@@ -2295,7 +2295,12 @@ public final class ToXML {
                     descElem.setText(desc);
                 }
                 String descHtml = invite.getDescriptionHtml();
-                BrowserDefang defanger = DefangFactory.getDefanger(MimeConstants.CT_TEXT_HTML);
+                BrowserDefang defanger = null;
+                if (Provisioning.getInstance().getConfig().getBooleanAttr(Provisioning.A_zimbraUseOwaspHtmlSanitizer, Boolean.TRUE)) {
+                    defanger = DefangFactory.getOwaspDefang();
+                } else {
+                    defanger = DefangFactory.getDefanger(MimeConstants.CT_TEXT_HTML);
+                }
                 if (descHtml != null) {
                     try {
                         descHtml = StringUtil.stripControlCharacters(descHtml);

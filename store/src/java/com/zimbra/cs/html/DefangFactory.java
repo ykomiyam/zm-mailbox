@@ -35,12 +35,17 @@ public class DefangFactory {
      * The xml defanger, used for xhtml and svg 
      */
     private static XHtmlDefang xhtmlDefang = new XHtmlDefang();
-    
+
     /**
      * This defanger does nothing. Here for
      * backwards compatibility
      */
     private static NoopDefang noopDefang = new NoopDefang();
+
+    /**
+     * This defanger is used for OWASP
+     */
+    private static OwaspHtmlSanitizer owaspDefang = new OwaspHtmlSanitizer();
     
     /**
      * 
@@ -66,5 +71,9 @@ public class DefangFactory {
             return xhtmlDefang;
         }
         return noopDefang;
+    }
+
+    public static BrowserDefang getOwaspDefang() {
+        return owaspDefang;
     }
 }
