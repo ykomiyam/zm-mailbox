@@ -242,7 +242,7 @@ public class SoapHttpTransport extends SoapTransport {
             // Set the original user agent if it's specified.
             String originalUserAgent = getOriginalUserAgent();
             if (originalUserAgent != null) {
-                method.setRequestHeader(new Header(HeaderConstants.HTTP_HEADER_ORIG_USER_AGENT, originalUserAgent));
+                method.addHeader(new BasicHeader(HeaderConstants.HTTP_HEADER_ORIG_USER_AGENT, originalUserAgent));
             }
 
             // the content-type charset will determine encoding used
@@ -282,7 +282,7 @@ public class SoapHttpTransport extends SoapTransport {
             if (zToken instanceof ZJWToken) {
                 method.addHeader(Constants.AUTH_HEADER, Constants.BEARER + " " + zToken.getValue());
             }
-            
+
             RequestConfig reqConfig = RequestConfig.custom().
                 setCookieSpec(cookieStore.getCookies().size() == 0 ? CookieSpecs.IGNORE_COOKIES:
                CookieSpecs.BROWSER_COMPATIBILITY).build();
@@ -292,7 +292,7 @@ public class SoapHttpTransport extends SoapTransport {
             method.addHeader("Connection", mKeepAlive ? "Keep-alive" : "Close");
 
             if (mHostConfig != null && mHostConfig.getUsername() != null && mHostConfig.getPassword() != null) {
-                
+
                 Credentials credentials = new UsernamePasswordCredentials(mHostConfig.getUsername(), mHostConfig.getPassword());
                 AuthScope authScope = new AuthScope(null, -1);
                 CredentialsProvider credsProvider = new BasicCredentialsProvider();

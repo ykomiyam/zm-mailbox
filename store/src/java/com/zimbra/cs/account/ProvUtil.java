@@ -1648,7 +1648,7 @@ public class ProvUtil implements HttpDebugListener {
         return true;
     }
 
-<<<<<<< HEAD
+
     private void doAddMember(String[] args) throws ServiceException {
         String[] members = new String[args.length - 2];
         System.arraycopy(args, 2, members, 0, args.length - 2);
@@ -1755,23 +1755,23 @@ public class ProvUtil implements HttpDebugListener {
             }
         }
     }
-    
+
     private void doCreateHabOrgUnit(String[] args) throws ServiceException {
-        if(args.length != 3) { 
+        if(args.length != 3) {
             usage();
             return;
         }
         Domain domain = lookupDomain(args[1], prov, Boolean.FALSE);
-        
+
         if (prov instanceof SoapProvisioning) {
             ((SoapProvisioning) prov).createHabOrgUnit(domain, args[2]);
         } else {
             prov.createHabOrgUnit(domain, args[2]);
         }
     }
-    
+
     private void doRenameHabOrgUnit(String[] args)  throws ServiceException {
-        if(args.length != 4) { 
+        if(args.length != 4) {
             usage();
             return;
         }
@@ -1782,9 +1782,9 @@ public class ProvUtil implements HttpDebugListener {
             prov.renameHabOrgUnit(domain, args[2], args[3]);
         }
     }
-    
+
     private void doDeleteHabOrgUnit(String[] args)  throws ServiceException {
-        if(args.length != 3) { 
+        if(args.length != 3) {
             usage();
             return;
         }
@@ -1797,7 +1797,7 @@ public class ProvUtil implements HttpDebugListener {
     }
 
     private void doGetHab(String[] args)  throws ServiceException {
-        if(args.length != 2) { 
+        if(args.length != 2) {
             usage();
             return;
         }
@@ -1813,7 +1813,7 @@ public class ProvUtil implements HttpDebugListener {
         if (!(prov instanceof SoapProvisioning)) {
             throwSoapOnly();
         }
-        //{habRootGrpId} {habParentGrpId} {targetHabParentGrpId} 
+        //{habRootGrpId} {habParentGrpId} {targetHabParentGrpId}
         if (args.length == 4) {
             ((SoapProvisioning) prov).modifyHabGroup(args[1], args[2], args[3]);
         } else if (args.length == 3) {
@@ -1823,13 +1823,13 @@ public class ProvUtil implements HttpDebugListener {
             return;
         }
     }
-    
+
     private void modifyHabGroupSeniority(String[] args)  throws ServiceException {
         if (!(prov instanceof SoapProvisioning)) {
             throwSoapOnly();
         }
-        
-        //{habGrpId} {seniorityIndex} 
+
+        //{habGrpId} {seniorityIndex}
         if (args.length == 3) {
             ((SoapProvisioning) prov).modifyHabGroupSeniority(args[1], args[2]);
         } else {
@@ -3886,7 +3886,7 @@ public class ProvUtil implements HttpDebugListener {
                 }
             } catch (ArgException | HttpException e) {
                 usage();
-            } 
+            }
         }
     }
 
@@ -5613,7 +5613,7 @@ public class ProvUtil implements HttpDebugListener {
         console.println("========== SOAP SEND ==========");
 
         if (debugLevel == SoapDebugLevel.high) {
-            
+
                 URI uri = postMethod.getURI();
                 console.println(uri.toString());
                 Header[] headers = postMethod.getAllHeaders();
